@@ -2,7 +2,7 @@
 
 We need to add a README here.
 
-
+Andrew Fuller, Angelica Chowdhury, Louis Ranking, Nerida Jenkins, Zachariah Phillips
 
 
 
