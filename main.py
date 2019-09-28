@@ -631,7 +631,7 @@ def main():
     with open(config.configFile(), "a+") as outFile:
         json.dump(vars(config), outFile)
 
-    tf.set_random_seed(config.setseed)
+    tf.set_random_seed(config.tfseed)
 
     # set gpus
     if config.gpus != "":
