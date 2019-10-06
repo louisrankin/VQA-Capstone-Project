@@ -830,10 +830,10 @@ class Preprocesser(object):
             dataset["train"] = self.readTier("train" + suffix, train = True)
 
         dataset["val"] = self.readTier("val" + suffix, train = trainOnVal)
-        if config.submission:
-            dataset["test"] = self.readTier("submission" + suffix, train = False)
-        else:
-            dataset["test"] = self.readTier("testdev" + suffix, train = False)
+        # if config.submission:
+        #     dataset["test"] = self.readTier("submission" + suffix, train = False)
+        # else:
+        #     dataset["test"] = self.readTier("testdev" + suffix, train = False)
 
         if hasTrain:
             dataset["evalTrain"] = {}
