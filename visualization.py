@@ -190,10 +190,6 @@ def main():
     with open(dataFile) as inFile:
         results = json.load(inFile)
 
-    # print(args.exp)
-    f= open(outputDir + '/image_index.txt',"w+")
-    attention_index = {}
-
     count = 0
     if args.instances is None:
         args.instances = range(len(results))
@@ -240,8 +236,6 @@ def main():
             print(results[i]["attentions"]["gate"])
 
         print("_" * 72)
-    
-    f.write(str(attention_index))
     
 
     with open(outputDir + '/images_index.json', 'w') as fp:
