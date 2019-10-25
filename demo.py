@@ -1011,4 +1011,4 @@ def update_image_src(value):
 
     return src_image, imageId
 
-app.run_server(debug=True, port=8056, use_reloader=False, threaded=False, host='0.0.0.0' )
+app.run_server(debug=True, port=8057, use_reloader=False, threaded=False, host='0.0.0.0' )
