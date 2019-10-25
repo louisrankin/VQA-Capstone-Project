@@ -53,12 +53,12 @@ from config import config, loadDatasetConfig, parseArgs
 from preprocess import Preprocesser, bold, bcolored, writeline, writelist
 from model import MACnet
 ''' Need to change the below two inputs to your local filepath. ./ did not work for image files for some reason'''
-experiment_name = 'gqaSG'
-image_directory = '/media/zach/deeplearning/Capstone/VQA-Capstone-Project/data/images/' # change to local image directory
-attention_image_directory ='/media/zach/deeplearning/Capstone/VQA-Capstone-Project/preds/' +experiment_name + '/valImages/' #Change to Prediction Directory
+experiment_name = 'output_classifier_512'
+image_directory = '/home/andrew_fuller5334/VQA-Capstone-Project/data/images/' # change to local image directory
+attention_image_directory ='/home/andrew_fuller5334/VQA-Capstone-Project/preds/' +experiment_name + '/valImages/' #Change to Prediction Directory
 
 data_location = './data/'
-scene_graph_objects = True
+scene_graph_objects = False
 
 if scene_graph_objects:
     file_objects = data_location+'gqa_objects_sg.h5'
@@ -67,7 +67,7 @@ else:
     file_objects = data_location+'gqa_objects.h5'
     file_merged_smy = data_location+'gqa_objects_merged_info.json'
 
-config.expName = 'gqaSG'
+config.expName = experiment_name
 
 #config.finalTest = True
 #config.test = True
