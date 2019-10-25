@@ -840,8 +840,7 @@ with open(file_merged_smy) as f:
     data_obs_mi = json.load(f)
 
 
-image_list = ['2363979','2347765', '2326545', '2355489', '2416149', '2370909', '2374131', '2329177', '2374131',
-              '2395282', '2329177', '2412670', '2402021', '2352815']
+image_list = ['2363979','2347765']
 imageId = random.choice(image_list)
 
 #logo = base64.b64encode(open('D:/mac-network-gqa/data/usyd_logo.png', 'rb').read()).decode('ascii')
