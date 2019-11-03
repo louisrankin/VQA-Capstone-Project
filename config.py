@@ -142,8 +142,9 @@ def parseArgs():
     parser.add_argument("--valFilenames",    default = [], nargs = "*", type = str)
     parser.add_argument("--featureType",     default = "resnet", type = str,   help = "features type")
 
-    parser.add_argument("--imageDims",    default = [100, 200], nargs = "*", type = int) # [14, 14, 2048] #ZP was [100, 2048]
+    parser.add_argument("--imageDims",    default = [100, 2048], nargs = "*", type = int) # [14, 14, 2048] #ZP was [100, 2048]
     parser.add_argument("--imageObjects", action = "store_true")
+    parser.add_argument("--sceneGraph", action = "store_true",      help = "use scene graph objects as input")
 
     # FOR NLVR:
     # parser.add_argument("--featureType",     default = "norm_128x32", type = str,   help = "features type") #
@@ -523,9 +524,16 @@ def configGQA():
     config.wordVectorsFile = "data/glove.6B.{dim}d.txt".format(dim = config.wrdQEmbDim) #
     config.wordVectorsSemanticFile = "data/glove.6B.{dim}d.txt".format(dim = config.semanticWordsEmbDim) #
 
-    config.imagesFilename = "{featureType}_sg.h5".format(featureType = config.featureType) #ZP
+    config.imagesFilename = "{featureType}.h5".format(featureType = config.featureType) #
+    config.imgsInfoFilename = "{featureType}_merged_info.json".format(featureType = config.featureType) #
 
-    config.imgsInfoFilename = "{featureType}_sg_merged_info.json".format(featureType = config.featureType) #ZP
+    if config.sceneGraph:
+        config.imagesFilename = "{featureType}_sg.h5".format(featureType = config.featureType) #ZP Modified features file for scene graphs
+        config.imgsInfoFilename = "{featureType}_sg_merged_info.json".format(featureType = config.featureType) #ZP New info file for scene graphs
+        config.imageDims = [100, 200] #ZP Modified image dimensions
+        print('\nUsing scene graph objects with dims',config.imageDims,'...\n')
+    else:
+        print('\nUsing image object detector features with dims',config.imageDims,'...\n')
 
     if config.subdir != "./":
         config.imagesFilename = "../" + config.imagesFilename
