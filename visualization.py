@@ -190,8 +190,6 @@ def main():
     with open(dataFile) as inFile:
         results = json.load(inFile)
 
-    # print(args.exp)
-
     count = 0
     if args.instances is None:
         args.instances = range(len(results))
@@ -230,11 +228,20 @@ def main():
         print("G:", results[i]["answer"])
         print("P:", results[i]["prediction"])
         print(isRightStr(results[i]))
+        
+        attention_index[results[i]["index"]] = [results[i]["imageId"]['id'],results[i]["question"]] #added by andrew to list pairs generated
+        
 
         if args.gate:
             print(results[i]["attentions"]["gate"])
 
         print("_" * 72)
+    
 
+    with open(outputDir + '/images_index.json', 'w') as fp:
+        json.dump(attention_index, fp)
+    
+    
+        
 if __name__ == "__main__":
     main()
