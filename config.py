@@ -142,8 +142,10 @@ def parseArgs():
     parser.add_argument("--valFilenames",    default = [], nargs = "*", type = str)
     parser.add_argument("--featureType",     default = "resnet", type = str,   help = "features type")
 
-    parser.add_argument("--imageDims",    default = [100, 2048], nargs = "*", type = int) # [14, 14, 2048]
+    parser.add_argument("--imageDims",    default = [100, 2048], nargs = "*", type = int) # [14, 14, 2048] #ZP was [100, 2048]
     parser.add_argument("--imageObjects", action = "store_true")
+    parser.add_argument("--sceneGraph", action = "store_true",      help = "use scene graph objects as input")
+
 
     # FOR NLVR:
     # parser.add_argument("--featureType",     default = "norm_128x32", type = str,   help = "features type") #
@@ -475,7 +477,6 @@ def parseArgs():
     # TF seed control
     parser.add_argument("--tfseed",  default = 1, type = int,          help = "Sets the global tensorflow seed. See: https://www.tensorflow.org/versions/r1.14/api_docs/python/tf/random/set_random_seed")
 
-
     parser.parse_args(namespace = config)
 
 ###################################### dataset configuration ######################################
@@ -522,14 +523,21 @@ def configNLVR():
 
 def configGQA():
     config.dataPath = "{dataBasedir}/data".format(dataBasedir = config.dataBasedir)
-    config.generatedPrefix += "_{featureType}_".format(featureType = config.featureType)
+    config.generatedPrefix += "_{featureType}".format(featureType = config.featureType)
     config.datasetFilename = "{dataSubset}_{{tier}}_data.json".format(dataSubset = config.dataSubset)
     config.wordVectorsFile = "data/glove.6B.{dim}d.txt".format(dim = config.wrdQEmbDim) #
     config.wordVectorsSemanticFile = "data/glove.6B.{dim}d.txt".format(dim = config.semanticWordsEmbDim) #
 
-    config.imagesFilename = "{featureType}.h5".format(featureType = config.featureType)
+    config.imagesFilename = "{featureType}.h5".format(featureType = config.featureType) #
+    config.imgsInfoFilename = "{featureType}_merged_info.json".format(featureType = config.featureType) #
 
-    config.imgsInfoFilename = "{featureType}_merged_info.json".format(featureType = config.featureType)
+    if config.sceneGraph:
+        config.imagesFilename = "{featureType}_sg.h5".format(featureType = config.featureType) #ZP Modified features file for scene graphs
+        config.imgsInfoFilename = "{featureType}_sg_merged_info.json".format(featureType = config.featureType) #ZP New info file for scene graphs
+        config.imageDims = [100, 200] #ZP Modified image dimensions
+        print('\nUsing scene graph objects with dims',config.imageDims,'...\n')
+    else:
+        print('\nUsing image object detector features with dims',config.imageDims,'...\n')
 
     if config.subdir != "./":
         config.imagesFilename = "../" + config.imagesFilename
