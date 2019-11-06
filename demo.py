@@ -1129,4 +1129,4 @@ def update_image_src(n_clicks,value):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False, port=8056, use_reloader=False, threaded=False)
+    app.run_server(debug=False, port=8056, use_reloader=False, threaded=False, host='0.0.0.0' )
