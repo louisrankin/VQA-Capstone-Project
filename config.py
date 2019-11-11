@@ -146,6 +146,7 @@ def parseArgs():
     parser.add_argument("--imageObjects", action = "store_true")
     parser.add_argument("--sceneGraph", action = "store_true",      help = "use scene graph objects as input")
 
+
     # FOR NLVR:
     # parser.add_argument("--featureType",     default = "norm_128x32", type = str,   help = "features type") #
     # resnet101_512x128, norm_400x100, none_80x20, normPerImage_80x20, norm_80x20
@@ -472,6 +473,9 @@ def parseArgs():
     parser.add_argument("--ansByMem",  action = "store_true")
 
     parser.add_argument("--genLossWeight",  default = 1.0, type = float)
+
+    # TF seed control
+    parser.add_argument("--tfseed",  default = 1, type = int,          help = "Sets the global tensorflow seed. See: https://www.tensorflow.org/versions/r1.14/api_docs/python/tf/random/set_random_seed")
 
     parser.parse_args(namespace = config)
 
