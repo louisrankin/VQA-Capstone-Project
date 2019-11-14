@@ -1,4 +1,4 @@
-# VQA-Captstone-Project
+# VQA-Capstone-Project
 
 Please refer to this appendix of [this report](https://codelabs-preview.appspot.com/?file_id=1BFinKsT4t-AjgHCvmOT3AaZImrY-Myme6ELMwJkNmZ8#13) to run the demo
 
