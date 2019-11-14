@@ -1,13 +1,6 @@
 # VQA-Captstone-Project
 
-We need to add a README here.
-
---Andrew Fuller, Angelica Chowdhury, Louis Rankin, Nerida Jenkins, Zachariah Phillips
-
-
-
-
-
+Please refer to this appendix of [this report](https://codelabs-preview.appspot.com/?file_id=1BFinKsT4t-AjgHCvmOT3AaZImrY-Myme6ELMwJkNmZ8#13) to run the demo
 
 # README from the original code
 #GQA: A New Dataset for Real-World Visual Reasoning
